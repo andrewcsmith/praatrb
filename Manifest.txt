@@ -4,5 +4,11 @@ Manifest.txt
 README.txt
 Rakefile
 bin/praat_lex
-lib/praat_lex.rb
+lib/praat.rb
+lib/praat_lexer.rb
+lib/praat_lexer.rex
+lib/praat_lexer.rex.rb
+lib/praat_parser.rb
+test/test.Pitch
 test/test_praat_lex.rb
+test/test_praat_parser.rb

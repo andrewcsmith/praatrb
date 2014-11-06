@@ -1,4 +1,6 @@
-require 'praat'
+module Praat; end
+
+require "praat_lexer.rex.rb"
 
 class Praat::Lexer
   def do_parse 
@@ -11,23 +13,23 @@ class Praat::Lexer
   end
 
   def lex_float_property property, value
-    [property.chomp, value.to_f]
+    [:property, property.chomp, value.to_f]
   end
 
   def lex_integer_property property, value
-    [property.chomp, value.to_i]
+    [:property, property.chomp, value.to_i]
   end
 
   def lex_string_property property, value
-    [property.chomp, value.chomp]
+    [:property, property.chomp, value.chomp]
   end
 
   def lex_collection collection
-    [collection.chomp << "s"]
+    [:collection, collection.chomp]
   end
 
   def lex_object object, index
-    [object.chomp, index.to_i]
+    [:object, object.chomp, index.to_i]
   end
 end
 
