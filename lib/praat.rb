@@ -39,6 +39,10 @@ module Praat
       # Set the attribute to the value
       self.send("#{name}=", value)
     end
+
+    def to_s
+      "#{self.inspect}" 
+    end
   end
 end
 

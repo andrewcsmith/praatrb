@@ -8,8 +8,14 @@ class Praat::Parser
       case item.shift
       when :collection
         current_node.add_property("#{item.first}s", create_collection(item.first))
+        current_node = current_node.send("#{item.first}s")
       when :object
-        current_node.add_to_collection(item.first, create_object(item.first))
+        unless current_node.is_a? Praat::MetaCollection
+          current_node = current_node.parent
+        end
+        current_node << create_object(item.first)
+        current_node.last.parent = current_node
+        current_node = current_node.last
       when :property
         current_node.add_property(*item)
       end
