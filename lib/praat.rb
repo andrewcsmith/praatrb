@@ -13,6 +13,10 @@ module Praat
       object.parent = self
       super object
     end
+
+    def to_s
+      self.inspect << super
+    end
   end
 
   class MetaObject
@@ -25,6 +29,9 @@ module Praat
 
     # Add the property to the object
     def add_property name, value
+      # Convert it to snake-case
+      name = sanitize_name name
+
       # Add the attr_accessor if it doesn't exist
       unless self.respond_to? "#{name}"
         self.class.class_exec(name) do |n|
@@ -42,6 +49,12 @@ module Praat
 
     def to_s
       "#{self.inspect}" 
+    end
+
+    private
+
+    def sanitize_name name
+      name.downcase.sub(' ', '_')
     end
   end
 end

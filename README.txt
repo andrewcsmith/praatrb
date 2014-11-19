@@ -1,14 +1,15 @@
 = praat_lex
 
-* FIX (url)
+* http://www.andrewchristophersmith.com/
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Provides a very malleable Praat file parser
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Pro: cool idea, doesn't need file specification
+* Con: only sort of works, not really tested
 
 == SYNOPSIS:
 

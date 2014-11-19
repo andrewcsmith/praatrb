@@ -1,3 +1,15 @@
 #!/usr/bin/env ruby
 
-abort "you need to write me"
+require 'praat'
+
+formants = File.open("formants.Collection", "rb", {encoding: 'utf-16:utf-8'})
+s = formants.read
+
+lexer = Praat::Lexer.new
+parser = Praat::Parser.new
+
+lexed = lexer.parse(s)
+parsed = parser.parse(lexed)
+
+puts parsed
+

@@ -31,5 +31,10 @@ class Praat::Lexer
   def lex_object object, index
     [:object, object.chomp, index.to_i]
   end
+
+  def lex_indent spaces
+    indents = spaces.length / 4
+    [:indent, indents]
+  end
 end
 

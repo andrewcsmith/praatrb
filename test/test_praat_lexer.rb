@@ -31,16 +31,21 @@ class TestPraatLexer < Minitest::Test
     assert_equal [[:property, "fileType", "Pitch"]], @lexer.parse(text)
   end
 
+  def test_parses_indents
+    text = "        nIndents = 2"
+    assert_equal [[:indent, 2], [:property, "nIndents", 2]], @lexer.parse(text)
+  end
+
   def test_parses_collection_with_properties
     text = <<-TXT
-      frame []: 
-          frame [1]:
-              intensity = 0 
-              nCandidates = 1 
-              candidate []: 
-                  candidate [1]:
-                      frequency = 0 
-                      strength = 0.4 
+frame []: 
+    frame [1]:
+        intensity = 0 
+        nCandidates = 1 
+        candidate []: 
+            candidate [1]:
+                frequency = 0 
+                strength = 0.4 
     TXT
     exp = [ [:collection, "frame"],
             [:object, "frame", 1],

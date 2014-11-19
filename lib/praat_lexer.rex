@@ -8,15 +8,16 @@ macros
   WORD /[A-Za-z]+ ?[A-Za-z]*/
 rules
   # Parse various tokens
-  /(#{WORD}) = (#{FLOAT})/   { [:float_property, *matches] }
+  /(#{WORD}) = (#{FLOAT})/    { [:float_property, *matches] }
   /(#{WORD}) = (#{INTEGER})/  { [:integer_property, *matches] }
   /(#{WORD}) = "(#{WORD})"/   { [:string_property, *matches] }
   /(#{WORD}) \[\]:/           { [:collection, *matches] }
-  /(#{WORD}) \[(#{INTEGER})\]/ { [:object, *matches] }
+  /(#{WORD}) \[(#{INTEGER})\]:/ { [:object, *matches] }
+  /( {4}+)/                  { [:indent, *matches] }
 
   # Whitespace 
-  /\s+/
-  /.*\n/
+  # /\s+/
+  /\s*/
 end
 
 # vim: filetype=ruby

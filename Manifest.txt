@@ -10,5 +10,5 @@ lib/praat_lexer.rex
 lib/praat_lexer.rex.rb
 lib/praat_parser.rb
 test/test.Pitch
-test/test_praat_lex.rb
+test/test_praat_lexer.rb
 test/test_praat_parser.rb
