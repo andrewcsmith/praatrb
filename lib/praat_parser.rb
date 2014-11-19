@@ -7,7 +7,7 @@ class Praat::Parser
     input.each do |item|
       case item.shift
       when :collection
-        current_node.add_property("#{item.first}s", create_collection(item.first))
+        current_node.add_property "#{item.first}s", create_collection(item.first)
         current_node = current_node.send("#{item.first}s")
       when :object
         unless current_node.is_a? Praat::MetaCollection

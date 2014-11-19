@@ -44,4 +44,16 @@ class TestPraatParser < Minitest::Test
     assert_equal 0.123, output.frames[0].time
     assert_equal 0.456, output.frames[1].time
   end
+
+  def test_adds_string_property
+    input = [[:collection, "frame"], 
+              [:object, "frame", 1], 
+                [:property, "time", 0.123], 
+                [:property, "syllable", "ah"]]
+
+    output = @parser.parse input
+
+    assert_equal 0.123, output.frames[0].time
+    assert_equal "ah", output.frames[0].syllable
+  end
 end
