@@ -21,6 +21,11 @@ class TestPraatLexer < Minitest::Test
     assert_equal [[:property, "frequency", 67.32]], @lexer.parse(text)
   end
 
+  def test_parses_scientific_float
+    text = "intensity = 8.3178501338792e-05"
+    assert_equal [[:property, "intensity", 8.3178501338792e-05]], @lexer.parse(text)
+  end
+
   def test_parses_integer_property
     text = "nCandidates = 2"
     assert_equal [[:property, "nCandidates", 2]], @lexer.parse(text)
@@ -48,13 +53,20 @@ frame []:
                 strength = 0.4 
     TXT
     exp = [ [:collection, "frame"],
-            [:object, "frame", 1],
-            [:property, "intensity", 0],
-            [:property, "nCandidates", 1],
-            [:collection, "candidate"],
-            [:object, "candidate", 1],
-            [:property, "frequency", 0],
-            [:property, "strength", 0.4] ]
+              [:indent, 1],
+              [:object, "frame", 1],
+                [:indent, 2],
+                [:property, "intensity", 0],
+                [:indent, 2],
+                [:property, "nCandidates", 1],
+                [:indent, 2],
+                [:collection, "candidate"],
+                  [:indent, 3],
+                  [:object, "candidate", 1],
+                    [:indent, 4],
+                    [:property, "frequency", 0],
+                    [:indent, 4],
+                    [:property, "strength", 0.4] ]
 
     assert_equal exp, @lexer.parse(text)
   end

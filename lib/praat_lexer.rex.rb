@@ -11,9 +11,10 @@ class Praat::Lexer
   require 'strscan'
 
   INTEGER = /\d+/
-  FLOAT   = /\d+\.\d+/
+  FLOAT   = /\d+\.\d+(?:e-\d\d)?/
   NUMBER  = /#{FLOAT}|#{INTEGER}/
-  WORD    = /[A-Za-z]+ ?[A-Za-z]*/
+  LETTER  = /[\w\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/
+  WORD    = /#{LETTER}+(?: #{LETTER}*)?/
 
   class ScanError < StandardError ; end
 
@@ -73,7 +74,7 @@ class Praat::Lexer
             action { [:object, *matches] }
           when text = ss.scan(/( {4}+)/) then
             action { [:indent, *matches] }
-          when text = ss.scan(/\s*/) then
+          when text = ss.scan(/\s*\n/) then
             # do nothing
           else
             text = ss.string[ss.pos .. -1]

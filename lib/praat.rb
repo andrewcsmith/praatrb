@@ -54,6 +54,9 @@ module Praat
     private
 
     def sanitize_name name
+      if name == "class"
+        name = "klass"
+      end
       name.downcase.sub(' ', '_')
     end
   end

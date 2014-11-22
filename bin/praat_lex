@@ -1,15 +1,21 @@
 #!/usr/bin/env ruby
+# Accepts one argument: the name of the file to lex and parse
 
 require 'praat'
+require 'pp'
 
-formants = File.open("formants.Collection", "rb", {encoding: 'utf-16:utf-8'})
-s = formants.read
+f = File.open(ARGV[0], "rb", {encoding: 'utf-16:utf-8'})
+s = f.read
 
-lexer = Praat::Lexer.new
-parser = Praat::Parser.new
+begin
+  lexer = Praat::Lexer.new
+  parser = Praat::Parser.new
 
-lexed = lexer.parse(s)
-parsed = parser.parse(lexed)
-
-puts parsed
+  lexed = lexer.parse(s)
+  parsed = parser.parse(lexed)
+rescue Praat::Lexer::ScanError => e
+  puts /(.*\n){0,3}/.match(e.message)[0]
+  puts e.backtrace
+  exit
+end
 

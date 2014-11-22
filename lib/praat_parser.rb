@@ -5,27 +5,20 @@ class Praat::Parser
     output = Praat::MetaObject.new
     @current_node = output
     @current_indent = 0
-    begin
-      input.each do |item|
-        case item.shift
-        when :indent
-          process_indent item
-        when :collection
-          @current_node.add_property "#{item.first}s", create_collection(item.first)
-          @current_node = @current_node.send("#{item.first}s")
-        when :object
-          @current_node << create_object(item.first)
-          @current_node.last.parent = @current_node
-          @current_node = @current_node.last
-        when :property
-          @current_node.add_property(*item)
-        end
+    input.each do |item|
+      case item.shift
+      when :indent
+        process_indent item
+      when :collection
+        @current_node.add_property "#{item.first}s", create_collection(item.first)
+        @current_node = @current_node.send("#{item.first}s")
+      when :object
+        @current_node << create_object(item.first)
+        @current_node.last.parent = @current_node
+        @current_node = @current_node.last
+      when :property
+        @current_node.add_property(*item)
       end
-    rescue NoMethodError => e
-      # puts e.message
-      # puts e.backtrace
-      # puts "current_node: #{current_node.inspect}"
-      raise e
     end
     output
   end

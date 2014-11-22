@@ -3,9 +3,10 @@ module Praat; end
 class Praat::Lexer
 macros
   INTEGER /\d+/
-  FLOAT /\d+\.\d+/
+  FLOAT /\d+\.\d+(?:e-\d\d)?/ # also captures scientific notation
   NUMBER /#{FLOAT}|#{INTEGER}/
-  WORD /[A-Za-z]+ ?[A-Za-z]*/
+  LETTER /[\w\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/ # includes IPA symbols
+  WORD /#{LETTER}+(?: #{LETTER}*)?/ # words may optionally have a space
 rules
   # Parse various tokens
   /(#{WORD}) = (#{FLOAT})/    { [:float_property, *matches] }
@@ -15,9 +16,8 @@ rules
   /(#{WORD}) \[(#{INTEGER})\]:/ { [:object, *matches] }
   /( {4}+)/                  { [:indent, *matches] }
 
-  # Whitespace 
-  # /\s+/
-  /\s*/
+  # Trailing whitespace and empty lines
+  /\s*\n/
 end
 
 # vim: filetype=ruby
