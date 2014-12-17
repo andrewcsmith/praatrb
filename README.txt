@@ -11,9 +11,22 @@ Provides a very malleable Praat file parser
 * Pro: cool idea, doesn't need file specification
 * Con: only sort of works, not really tested
 
+The parser parses the basic grammar of Praat files, creating classes whenever
+it needs them. It results in a tree of Objects and Collections, with a variety
+of attributes that correspond to the grammar it finds in the file. It knows
+nothing about Praat. It also only works with long text files.
+
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  require 'praat'
+  my_collection = Praat.parse_file("my_praat_file.Collection")
+  # => #<Praat::Root ... >
+  my_collection.items[0]
+  # => #<Praat::Item ... >
+  # Let's say the first item in the collection was a Pitch object
+  # Collection of frames
+  my_collection.items[0].frames[0].candidates[0].frequency
+  # => 101.2358493290
 
 == REQUIREMENTS:
 
@@ -21,7 +34,10 @@ Provides a very malleable Praat file parser
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+This is experimental. Only git-cloners allowed at this point.
+
+  git clone https://github.com/andrewcsmith/praatrb.git
+  rake install_gem
 
 == DEVELOPERS:
 
@@ -36,7 +52,7 @@ and generate the RDoc.
 
 (The MIT License)
 
-Copyright (c) 2014 FIX
+Copyright (c) 2014 Andrew Christopher Smith
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
