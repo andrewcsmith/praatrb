@@ -2,7 +2,7 @@ module Praat; end
 
 class Praat::Parser
   def parse input
-    output = Praat::MetaObject.new
+    output = Praat::Root.new
     @current_node = output
     @current_indent = 0
     input.each do |item|

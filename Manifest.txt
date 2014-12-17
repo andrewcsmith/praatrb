@@ -5,10 +5,16 @@ README.txt
 Rakefile
 bin/praat_lex
 lib/praat.rb
+lib/praat_formant.rb
 lib/praat_lexer.rb
 lib/praat_lexer.rex
 lib/praat_lexer.rex.rb
 lib/praat_parser.rb
+lib/praat_pitch.rb
+test/fixtures/tajm.Pitch
 test/test.Pitch
+test/test_praat.rb
+test/test_praat_formant.rb
 test/test_praat_lexer.rb
 test/test_praat_parser.rb
+test/test_praat_pitch.rb

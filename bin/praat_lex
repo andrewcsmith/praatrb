@@ -1,10 +1,24 @@
 #!/usr/bin/env ruby
-# Accepts one argument: the name of the file to lex and parse
+# Accepts one argument: the name of the file to lex and parse. Second optional
+# argument is the encoding of that file.
 
 require 'praat'
 require 'pp'
 
-f = File.open(ARGV[0], "rb", {encoding: 'utf-16:utf-8'})
+source_encoding = ARGV[1] || "utf-16"
+
+begin
+  f = File.open(ARGV[0], "rb", {encoding: "#{source_encoding}:utf-8"})
+rescue Encoding::InvalidByteSequenceError => e
+  # If the file reading throws an error, try with the default (utf-8) encoding.
+  if source_encoding != "utf-8"
+    source_encoding = "utf-8"
+    retry
+  else
+    raise e
+  end
+end
+
 s = f.read
 
 begin
