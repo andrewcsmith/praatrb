@@ -1,0 +1,49 @@
+Explanation of what I know:
+
+y = X \beta + \epsilon
+
+* y and \epsilon are n x 1 vectors. y is the error.
+* \beta is a p x 1 vector of parameters
+* X is a n x b matrix of regressors, sometimes called the design matrix
+  for a linear model with examples n, it is [[1, 0], [1, 1], ... [1, n]]
+
+the constant term is always included in the set of regressors X, by taking
+  X_i1 = 1 for all i = 1, ..., n
+
+the coefficient \beta_1 corresponding to this is called the intercept
+
+[121] pry(main)> x
+=> 
+[
+  [1.0, 0.0]
+  [1.0, 1.0]
+  [1.0, 2.0]
+  [1.0, 3.0]
+  [1.0, 4.0]
+  [1.0, 5.0]
+  [1.0, 6.0]
+  [1.0, 7.0]
+  [1.0, 8.0]
+  [1.0, 9.0]
+]
+[122] pry(main)> y
+=> 
+[
+  [614.4744305006762]
+  [622.5551330331624]
+  [573.4127290822486]
+  [576.1275132890672]
+  [579.9500973027524]
+  [578.0185298709947]
+  [581.7090254298652]
+  [567.0256937970642]
+  [554.7064824753095]
+  [549.2119045110436]
+]
+[123] pry(main)> beta = ((x.transpose.dot x).invert.dot(x.transpose)).dot(y)
+=> 
+[
+  [  609.158031072317] [-6.541972698466356] 
+]
+[124] pry(main)> 
+
