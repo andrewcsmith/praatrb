@@ -13,6 +13,11 @@ module Praat
     Praat::Parser.new.parse(Praat::Lexer.new.parse(f.read))
   end
 
+  # Turns a hz reading into a midi value.
+  #
+  # hz - The input value in hz
+  # base_hz - The frequency for tuning (i.e., A=440)
+  # base_midi - The midi key that the tuning pitch corresponds to
   def self.hz_to_midi hz, base_hz = 440.0, base_midi = 69
     if hz && hz > 0.0
       (Math.log2(hz.to_f / base_hz) * 12.0) + base_midi

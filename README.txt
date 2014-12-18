@@ -34,10 +34,9 @@ nothing about Praat. It also only works with long text files.
 
 == INSTALL:
 
-This is experimental. Only git-cloners allowed at this point.
+YMMV.
 
-  git clone https://github.com/andrewcsmith/praatrb.git
-  rake install_gem
+  gem install praatrb
 
 == DEVELOPERS:
 

@@ -18,7 +18,7 @@ Hoe.plugin :minitest
 # Hoe.plugin :seattlerb
 # Hoe.plugin :travis
 
-Hoe.spec "praat_lex" do
+Hoe.spec "praatrb" do
   developer "Andrew Smith", "andrewchristophersmith@gmail.com"
   dependency "oedipus_lex", "~> 2.4", :developer
 
