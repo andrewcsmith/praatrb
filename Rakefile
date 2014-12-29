@@ -34,4 +34,10 @@ task :test => :parser
 
 file "lib/praat_lexer.rex.rb" => "lib/praat_lexer.rex"
 
+task :pry do
+  cmd = 'pry -I./lib -rpraat'
+  puts cmd
+  system cmd
+end
+
 # vim: syntax=ruby

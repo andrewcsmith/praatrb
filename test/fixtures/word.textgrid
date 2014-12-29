@@ -1,0 +1,106 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 11.5 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "word" 
+        xmin = 0 
+        xmax = 11.5 
+        intervals: size = 23 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.691484125650185 
+            text = "" 
+        intervals [2]:
+            xmin = 0.691484125650185 
+            xmax = 1.8966492788805305 
+            text = "obsessed" 
+        intervals [3]:
+            xmin = 1.8966492788805305 
+            xmax = 2.2392655843472355 
+            text = "" 
+        intervals [4]:
+            xmin = 2.2392655843472355 
+            xmax = 3.216405594517157 
+            text = "bewildered" 
+        intervals [5]:
+            xmin = 3.216405594517157 
+            xmax = 3.72457908227924 
+            text = "" 
+        intervals [6]:
+            xmin = 3.72457908227924 
+            xmax = 3.899052937852284 
+            text = "by" 
+        intervals [7]:
+            xmin = 3.899052937852284 
+            xmax = 3.9662155620103863 
+            text = "the" 
+        intervals [8]:
+            xmin = 3.9662155620103863 
+            xmax = 4.989279626899325 
+            text = "shipwreck" 
+        intervals [9]:
+            xmin = 4.989279626899325 
+            xmax = 5.376070413467542 
+            text = "" 
+        intervals [10]:
+            xmin = 5.376070413467542 
+            xmax = 5.561603318410718 
+            text = "of" 
+        intervals [11]:
+            xmin = 5.561603318410718 
+            xmax = 5.6693891012824675 
+            text = "the" 
+        intervals [12]:
+            xmin = 5.6693891012824675 
+            xmax = 6.473365022702895 
+            text = "singular" 
+        intervals [13]:
+            xmin = 6.473365022702895 
+            xmax = 6.962533539183594 
+            text = "" 
+        intervals [14]:
+            xmin = 6.962533539183594 
+            xmax = 7.091486560653985 
+            text = "we" 
+        intervals [15]:
+            xmin = 7.091486560653985 
+            xmax = 7.217751444879803 
+            text = "have" 
+        intervals [16]:
+            xmin = 7.217751444879803 
+            xmax = 7.717505504617306 
+            text = "chosen" 
+        intervals [17]:
+            xmin = 7.717505504617306 
+            xmax = 7.796548099877993 
+            text = "the" 
+        intervals [18]:
+            xmin = 7.796548099877993 
+            xmax = 8.501573120464995 
+            text = "meaning" 
+        intervals [19]:
+            xmin = 8.501573120464995 
+            xmax = 9.1668913577502 
+            text = "" 
+        intervals [20]:
+            xmin = 9.1668913577502 
+            xmax = 9.41226978225506 
+            text = "of" 
+        intervals [21]:
+            xmin = 9.41226978225506 
+            xmax = 9.722981103552533 
+            text = "being" 
+        intervals [22]:
+            xmin = 9.722981103552533 
+            xmax = 10.858444011201339 
+            text = "numerous" 
+        intervals [23]:
+            xmin = 10.858444011201339 
+            xmax = 11.5 
+            text = "" 

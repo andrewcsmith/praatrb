@@ -6,18 +6,25 @@ class Praat::Parser
     @current_node = output
     @current_indent = 0
     input.each do |item|
-      case item.shift
-      when :indent
-        process_indent item
-      when :collection
-        @current_node.add_property "#{item.first}s", create_collection(item.first)
-        @current_node = @current_node.send("#{item.first}s")
-      when :object
-        @current_node << create_object(item.first)
-        @current_node.last.parent = @current_node
-        @current_node = @current_node.last
-      when :property
-        @current_node.add_property(*item)
+      begin
+        case item.shift
+        when :indent
+          process_indent item
+        when :collection
+          @current_node.add_property "#{item.first}s", create_collection(item.first)
+          @current_node = @current_node.send("#{item.first}s")
+        when :object
+          @current_node << create_object(item.first)
+          @current_node.last.parent = @current_node
+          @current_node = @current_node.last
+        when :property
+          @current_node.add_property(*item)
+        end
+      rescue Exception => ex
+        puts
+        print "item: #{item}\n"
+        print "current node: #{@current_node}\n"
+        raise ex
       end
     end
     output

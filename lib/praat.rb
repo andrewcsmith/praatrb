@@ -2,9 +2,17 @@ require "praat_lexer.rb"
 require "praat_parser.rb"
 require "praat_pitch.rb"
 require "praat_formant.rb"
+require "praat_textgrid.rb"
 
 module Praat
   VERSION = "1.0.0"
+
+  begin 
+    require 'nmatrix'
+    HAS_NMATRIX = true
+  rescue LoadError => er
+    HAS_NMATRIX = false
+  end
 
   # Parses a file given a specified encoding, returning an object containing
   # nested objects

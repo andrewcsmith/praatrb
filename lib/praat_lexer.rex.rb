@@ -66,15 +66,19 @@ class Praat::Lexer
             action { [:float_property, *matches] }
           when text = ss.scan(/(#{WORD}) = (#{INTEGER})/) then
             action { [:integer_property, *matches] }
-          when text = ss.scan(/(#{WORD}) = "(#{WORD})"/) then
+          when text = ss.scan(/(#{WORD}) = "(#{WORD}|)"/) then
             action { [:string_property, *matches] }
           when text = ss.scan(/(#{WORD}) \[\]:/) then
+            action { [:collection, *matches] }
+          when text = ss.scan(/(intervals): size = #{INTEGER}.*/) then
             action { [:collection, *matches] }
           when text = ss.scan(/(#{WORD}) \[(#{INTEGER})\]:/) then
             action { [:object, *matches] }
           when text = ss.scan(/( {4}+)/) then
             action { [:indent, *matches] }
           when text = ss.scan(/\s*\n/) then
+            # do nothing
+          when text = ss.scan(/tiers\?.*/) then
             # do nothing
           else
             text = ss.string[ss.pos .. -1]
