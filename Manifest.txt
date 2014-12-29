@@ -11,9 +11,13 @@ lib/praat_lexer.rex
 lib/praat_lexer.rex.rb
 lib/praat_parser.rb
 lib/praat_pitch.rb
+lib/praat_textgrid.rb
+test/fixtures/smoothed_pitch.pitch
 test/fixtures/tajm.Pitch
+test/fixtures/word.textgrid
 test/test_praat.rb
 test/test_praat_formant.rb
 test/test_praat_lexer.rb
 test/test_praat_parser.rb
 test/test_praat_pitch.rb
+test/test_praat_textgrid.rb
