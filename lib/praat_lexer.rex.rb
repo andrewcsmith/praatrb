@@ -13,7 +13,7 @@ class Praat::Lexer
   INTEGER = /\d+/
   FLOAT   = /\d+\.\d+(?:e-\d\d)?/
   NUMBER  = /#{FLOAT}|#{INTEGER}/
-  LETTER  = /[\w\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/
+  LETTER  = /[\w'\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/
   WORD    = /#{LETTER}+(?: #{LETTER}*)?/
 
   class ScanError < StandardError ; end

@@ -10,7 +10,7 @@ module Praat
   begin 
     require 'nmatrix'
     HAS_NMATRIX = true
-  rescue LoadError => er
+  rescue LoadError
     HAS_NMATRIX = false
   end
 
@@ -91,6 +91,12 @@ module Praat
     end
   end
   
-  class Root < MetaObject; end
+  class Root < MetaObject
+    include FormantMethods
+  end
+
+  class Item < MetaObject
+    include FormantMethods
+  end
 end
 

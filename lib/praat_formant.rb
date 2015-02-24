@@ -7,8 +7,7 @@ module Praat
     item
   end
 
-  class MetaObject; end
-  class Item < MetaObject
+  module FormantMethods
     ##
     # Method mapping some sort of data frequency to a frame frequency
     def map_frequencies frame_symbol, data_symbol
@@ -18,7 +17,15 @@ module Praat
     end
 
     def map_formant_frequencies
-      map_frequencies :framess, :formants
+      map_frequencies :frames, :formants
+    end
+
+    def num_formants
+      self.maxnformants
+    end
+
+    def num_frames
+      self.frames.size
     end
 
     ##
@@ -31,12 +38,15 @@ module Praat
     #
     def least_squares_formant logarithmic = true
       raise NotImplementedError, "#least_squares_formant requries NMatrix" unless HAS_NMATRIX
-      frames = map_formant_frequencies.to_nm.each_column.map { |c|
+      frames = map_formant_frequencies.flatten.to_nm([num_frames, num_formants]).each_column.map { |c|
         c = c.log2 if logarithmic
+        if block_given? 
+          c = yield c
+        end
         x = NMatrix.ones(c.shape).hconcat(NMatrix.seq(c.shape))
         ((x.transpose.dot x).invert.dot(x.transpose)).dot(c)
       }.map(&:transpose)
-      [self.framess.size, frames[0].vconcat(*frames[1..-1])]
+      [self.frames.size, frames[0].vconcat(*frames[1..-1])]
     end
   end
 end

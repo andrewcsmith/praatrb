@@ -5,7 +5,7 @@ macros
   INTEGER /\d+/
   FLOAT /\d+\.\d+(?:e-\d\d)?/ # also captures scientific notation
   NUMBER /#{FLOAT}|#{INTEGER}/
-  LETTER /[\w\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/ # includes IPA symbols
+  LETTER /[\w'\u0250-\u02AF\u00E6\u00F0\u03B8\u014B]/ # includes IPA symbols
   WORD /#{LETTER}+(?: #{LETTER}*)?/ # words may optionally have a space
 rules
   # Parse various tokens

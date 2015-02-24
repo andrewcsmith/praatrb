@@ -17,3 +17,4 @@ class TestPraatPitch < Minitest::Test
     assert_in_delta 180.141, output.frames[1].freq
   end
 end
+

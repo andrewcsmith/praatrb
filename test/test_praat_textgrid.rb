@@ -23,10 +23,17 @@ class TestPraatTextGrid < Minitest::Test
   end
 
   def test_extracts_pitch
-    pitch = Praat.parse_file 'test/fixtures/smoothed_pitch.pitch'
+    pitch = Praat.parse_file 'test/fixtures/obsessed.pitch'
     obsessed = @textgrid.items[0].intervalss.select(&:has_text?).first
     obsessed_pitch = obsessed.extract_pitch pitch
     assert_kind_of Praat::Frames, obsessed_pitch.frames
+  end
+
+  def test_extracts_formant
+    formant = Praat.parse_file 'test/fixtures/obsessed.formant'
+    obsessed = @textgrid.items[0].intervalss.select(&:has_text?).first
+    obsessed_formant = obsessed.extract_formant formant
+    assert_kind_of Praat::Frames, obsessed_formant.frames
   end
 end
 
