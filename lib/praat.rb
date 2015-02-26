@@ -7,6 +7,8 @@ require "praat_textgrid.rb"
 module Praat
   VERSION = "1.0.0"
 
+  require 'json'
+
   begin 
     require 'nmatrix'
     HAS_NMATRIX = true
@@ -52,6 +54,20 @@ module Praat
   class MetaObject
     attr_accessor :parent
 
+    def to_json opts = {}
+      properties.inject Hash.new do |h, v|
+        property = instance_variable_get "@#{v}"
+        if property.is_a? MetaCollection
+          h[v] = property.map {|f| JSON.parse(f.to_json(opts))}
+        elsif property.is_a? MetaObject
+          h[v] = JSON.parse(property.to_json(opts))
+        else
+          h[v] = property
+        end
+        h
+      end.to_json(opts)
+    end
+
     # Append the object to the collection of names
     def add_to_collection name, object
       instance_variable_get("@#{name}s").instance_exec(object) { |o| self << o }
@@ -88,6 +104,12 @@ module Praat
         name = "klass"
       end
       name.downcase.sub(' ', '_')
+    end
+
+    def properties
+      instance_variables.reject {|f| f == :@parent}.map do |v|
+        v.to_s.gsub "@", ""
+      end
     end
   end
   

@@ -13,5 +13,9 @@ class TestPraatFormant < Minitest::Test
       assert_in_delta ans[0], ans[1]
     end
   end
+
+  def test_to_json
+
+  end
 end
 
