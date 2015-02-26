@@ -30,7 +30,8 @@ nothing about Praat. It also only works with long text files.
 
 == REQUIREMENTS:
 
-* oedipux_lex
+* nmatrix (for least-squares line fitting)
+* oedipux_lex (development)
 
 == INSTALL:
 

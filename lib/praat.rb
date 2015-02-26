@@ -5,7 +5,7 @@ require "praat_formant.rb"
 require "praat_textgrid.rb"
 
 module Praat
-  VERSION = "1.0.0"
+  VERSION = "1.1.0"
 
   require 'json'
 
